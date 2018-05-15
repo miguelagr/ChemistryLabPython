@@ -57,8 +57,8 @@ def encuentratan(x,p):
 
 #obtener una familia de curvas
 
-ptan=[]
-
+itan=[]
+rtan=[]
 plt.figure()
 for i in range(nT):
     T= T - .35
@@ -71,7 +71,8 @@ for i in range(nT):
             #print x1[list(x1).index(i)]
             break
     pp=encuentratan(x1,iminimo)
-    ptan.append(pp)
+    itan.append(pp[0])
+    rtan.append(pp[1])
     tn = tan(x1,x1[pp[0]])
 #    tn1 = tan(x1,x1[encuentratan(x1,iminimo)[1]-1])
 #    tn2 = tan(x1,x1[encuentratan(x1,iminimo)[0]])
@@ -86,9 +87,14 @@ for i in range(nT):
 #plt.show()
 
 plt.figure()
-for p in ptan:
-    plt.plot(x1[p[0]],gibbs(x1[p[0]]),'o')
-    plt.plot(x1[p[1]],gibbs(x1[p[1]]),'o')
+
+for i in itan:
+    print [i],gibbs(x1[i])
+
+gitan=[gibbs(x1[i]) for i in itan]
+grtan=[gibbs(x1[i]) for i in rtan]
+plt.plot(itan,gitan,'.b-',linewidth=1,markersize=12)
+plt.plot(rtan,grtan,'.b-',linewidth=1,markersize=12)
 plt.show()
  
 #plt.ion()
